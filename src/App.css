@@ -16,11 +16,12 @@
 	--bg: #f7f8fc;
 	--overlay-1: #eceff8;
 	--overlay-2: #dedef2;
+	--overlay-3: #5a76e7;
 }
 
 html {
-  line-height: 1.5;
-  height: 100vh;
+	line-height: 1.5;
+	height: 100vh;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	/* Disables horizontal scroll */
@@ -35,15 +36,18 @@ body {
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+	color: inherit;
+	text-decoration: none;
 }
 
-body, #root, .App {
-  height: 100%;
+body,
+#root,
+.App {
+	height: 100%;
 }
 
 button {
+	display: block;
 	outline: 0;
 	border: 0;
 	background: none;
@@ -52,18 +56,28 @@ button {
 	font-size: inherit;
 }
 
-
-.App {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+.test-start-btn {
+	padding: 0.5rem 1rem;
+	border-radius: 0.2rem;
+	color: var(--neutral-w);
+	background: var(--overlay-3);
 }
 
+.editor {
+	max-height: 20rem;
+	max-width: 80%;
+}
+
+.App {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
 
 .page {
 	display: flex;
-  justify-content: space-between;
-  height: 100%;
+	justify-content: space-between;
+	height: 100%;
 }
 
 .nav {
@@ -84,12 +98,12 @@ button {
 }
 
 .pkg-box {
-  margin: 2rem;
-  width: 100%;
+	margin: 2rem;
+	width: 100%;
 }
 
 .pkg-box > h1 {
-  margin-bottom: 1rem;
+	margin-bottom: 1rem;
 }
 
 .pkg {
@@ -122,7 +136,7 @@ button {
 .new-btn {
 	background: var(--overlay-1);
 	color: var(--text-sub1);
-	padding: 0.2rem 0.6rem;
+	padding: 0.2rem 0.8rem;
 	font-size: 1.5rem;
 	border-radius: 0.5rem;
 	margin: 1rem;
@@ -135,8 +149,8 @@ button {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-  border-radius: 1rem;
-  max-width: fit-content;
+	border-radius: 1rem;
+	max-width: fit-content;
 }
 
 .options {
@@ -150,14 +164,16 @@ button {
 	border-radius: 0.3rem;
 }
 
-.spaced > * + * {
-	margin-left: 1rem;
-}
-
 .option:hover,
-.option:active {
+.option:active,
+.selected {
 	color: var(--text-highlight);
 	background-color: var(--overlay-1);
+}
+
+.w-box {
+	background: var(--neutral-w);
+	padding: 1rem;
 }
 
 /* Utility Classes */
@@ -181,4 +197,12 @@ button {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.spaced-l > * + * {
+	margin-left: 1rem;
+}
+
+.spaced-t > * + * {
+	margin-top: 1rem;
 }
