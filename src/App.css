@@ -46,6 +46,10 @@ body,
 	height: 100%;
 }
 
+.empty {
+	width: 100%;
+}
+
 button {
 	display: block;
 	outline: 0;

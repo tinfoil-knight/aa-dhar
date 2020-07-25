@@ -1,22 +1,27 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
-function getClassName(selected, option) {
-	console.log(option, selected)
-	if (selected === option) {
+function getClassName(path, option) {
+	if (path === option.toLowerCase()) {
 		return 'option selected'
 	}
 	return 'option'
 }
 
-export default function Option({ selected, option, setSelected }) {
+export default function Option({ option, setSelected }) {
+	let location = useLocation()
+	const handleClick = e => {
+		console.log(e.currentTarget.innerText)
+	}
 	return (
-		<button
-			className={getClassName(selected, option)}
-			key={option}
-			onClick={e => setSelected(e.currentTarget.innerText)}
-		>
-			<Link to={'/' + option.toLowerCase()}>{option}</Link>
-		</button>
+		<Link to={'/' + option.toLowerCase()}>
+			<button
+				className={getClassName(location.pathname, option)}
+				key={option}
+				onClick={handleClick}
+			>
+				{option}
+			</button>
+		</Link>
 	)
 }
