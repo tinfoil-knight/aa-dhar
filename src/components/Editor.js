@@ -4,7 +4,7 @@ import AceEditor from 'react-ace'
 import 'ace-builds/src-noconflict/mode-javascript'
 import 'ace-builds/src-noconflict/theme-github'
 
-export default function Editor() {
+export default function Editor({ handleChange }) {
 	return (
 		<>
 			<AceEditor
@@ -12,9 +12,8 @@ export default function Editor() {
 				mode="javascript"
 				theme="github"
 				name="test-code"
-				// onLoad={this.onLoad}
-				// onChange={this.onChange}
-				fontSize={14}
+				onChange={handleChange}
+				fontSize={12}
 				showPrintMargin={true}
 				showGutter={true}
 				highlightActiveLine={true}

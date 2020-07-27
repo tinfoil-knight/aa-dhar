@@ -4,6 +4,7 @@ import './App.css'
 
 import PackagePage from './pages/PackagePage'
 import TestPage from './pages/TestPage'
+import NewFunctionPage from './pages/NewFunctionPage'
 import EmptyPage from './pages/EmptyPage'
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
 			<Route path="/support" component={EmptyPage} />
 			<Route path="/settings" component={EmptyPage} />
 			<Route path="/documentation" component={EmptyPage} />
+			<Route path="/new" component={NewFunctionPage} />
 		</Switch>
 	)
 }

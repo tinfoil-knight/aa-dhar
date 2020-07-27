@@ -35,19 +35,22 @@ body {
 	background: var(--bg);
 }
 
-a {
-	color: inherit;
-	text-decoration: none;
-}
-
 body,
 #root,
 .App {
 	height: 100%;
 }
 
-.empty {
-	width: 100%;
+/* Global Styles */
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+input,
+select {
+	display: block;
 }
 
 button {
@@ -60,18 +63,11 @@ button {
 	font-size: inherit;
 }
 
-.test-start-btn {
-	padding: 0.5rem 1rem;
-	border-radius: 0.2rem;
-	color: var(--neutral-w);
-	background: var(--overlay-3);
+h1 {
+	margin-bottom: 1rem;
 }
 
-.editor {
-	max-height: 20rem;
-	max-width: 80%;
-}
-
+/* Common Elements */
 .App {
 	display: flex;
 	flex-direction: column;
@@ -82,6 +78,11 @@ button {
 	display: flex;
 	justify-content: space-between;
 	height: 100%;
+}
+
+.w-box {
+	background: var(--neutral-w);
+	padding: 1rem;
 }
 
 .nav {
@@ -99,51 +100,6 @@ button {
 .avatar {
 	border-radius: 50%;
 	margin-left: 1rem;
-}
-
-.pkg-box {
-	margin: 2rem;
-	width: 100%;
-}
-
-.pkg-box > h1 {
-	margin-bottom: 1rem;
-}
-
-.pkg {
-	background: var(--neutral-w);
-	margin-bottom: 1rem;
-	padding: 1rem;
-	position: relative;
-	border-radius: 1rem;
-}
-
-.pkg-test {
-	background: #dadbe1;
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	padding: 0.5rem 1.2rem;
-	border-radius: 0 0 1rem 0;
-	color: var(--text-sub2);
-}
-
-.new-box {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: var(--text-sub1);
-	background: var(--overlay-2);
-	border-radius: 1rem;
-}
-
-.new-btn {
-	background: var(--overlay-1);
-	color: var(--text-sub1);
-	padding: 0.2rem 0.8rem;
-	font-size: 1.5rem;
-	border-radius: 0.5rem;
-	margin: 1rem;
 }
 
 .sidebar {
@@ -175,9 +131,84 @@ button {
 	background-color: var(--overlay-1);
 }
 
-.w-box {
+.btn {
+	padding: 0.5rem 1rem;
+	border-radius: 0.2rem;
+	color: var(--neutral-w);
+	background: var(--overlay-3);
+}
+/* Page Specific */
+
+/* Package Page */
+.pkg-box {
+	margin: 2rem;
+	width: 100%;
+}
+
+.pkg {
 	background: var(--neutral-w);
+	margin-bottom: 1rem;
 	padding: 1rem;
+	position: relative;
+	border-radius: 1rem;
+}
+
+.new-box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--text-sub1);
+	background: var(--overlay-2);
+	border-radius: 1rem;
+}
+
+.new-btn {
+	background: var(--overlay-1);
+	color: var(--text-sub1);
+	padding: 0.2rem 0.8rem;
+	font-size: 1.5rem;
+	border-radius: 0.5rem;
+	margin: 1rem;
+}
+
+.pkg-test {
+	background: #dadbe1;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	padding: 0.5rem 1.2rem;
+	border-radius: 0 0 1rem 0;
+	color: var(--text-sub2);
+}
+
+/* Test Page */
+
+.editor {
+	max-height: 20rem;
+	max-width: 80%;
+}
+
+/* New Function Page */
+.input-text,
+.input-select {
+	font-family: 'Nunito';
+	background: var(--bg);
+	color: var(--text-highlight);
+	outline: 0;
+	border: 0;
+	font-size: larger;
+	width: 40rem;
+	border-bottom: solid 1px var(--overlay-3);
+	caret-color: var(--overlay-3);
+	padding: 0.2rem;
+}
+
+.input-textarea {
+	font-size: medium;
+}
+
+.empty {
+	width: 100%;
 }
 
 /* Utility Classes */
