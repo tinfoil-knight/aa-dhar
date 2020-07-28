@@ -4,15 +4,15 @@ import AceEditor from 'react-ace'
 import 'ace-builds/src-noconflict/mode-javascript'
 import 'ace-builds/src-noconflict/theme-github'
 
-export default function Editor({ handleChange }) {
+export default function Editor({ onChange, placeholder, name }) {
 	return (
 		<>
 			<AceEditor
-				placeholder="Enter test code here"
+				placeholder={placeholder}
 				mode="javascript"
 				theme="github"
-				name="test-code"
-				onChange={handleChange}
+				name={name}
+				onChange={onChange}
 				fontSize={12}
 				showPrintMargin={true}
 				showGutter={true}

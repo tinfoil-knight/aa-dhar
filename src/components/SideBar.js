@@ -2,7 +2,7 @@ import Option from './Option'
 import React, { useState } from 'react'
 
 export default function SideBar() {
-	const optionsTop = ['Packages', 'Analytics', 'Billing', 'Test', 'Settings']
+	const optionsTop = ['Functions', 'Analytics', 'Billing', 'Jobs', 'Settings']
 	const optionsBottom = ['Support', 'Documentation']
 	const [selected, setSelected] = useState('Packages')
 	return (

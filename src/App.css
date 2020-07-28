@@ -181,6 +181,31 @@ h1 {
 	color: var(--text-sub2);
 }
 
+.dot {
+	height: 10px;
+	width: 10px;
+	background-color: #bbb;
+	border-radius: 100%;
+	display: inline-block;
+	margin-left: 0.5rem;
+}
+
+.unavailable {
+	background: yellow;
+}
+
+.available {
+	background: green;
+}
+
+.failed {
+	background: red;
+}
+
+.unknown {
+	color: gray;
+}
+
 /* Test Page */
 
 .editor {

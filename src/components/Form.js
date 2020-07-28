@@ -1,82 +1,71 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useFormik } from 'formik'
+import Editor from './Editor'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 
 export default function Form() {
+	const [error, setError] = useState(null)
+	const [message, setMessage] = useState(null)
+
+	const errorHook = () => {
+		if (error !== null) {
+			toast.error(error)
+		}
+	}
+	const messageHook = () => {
+		if (message !== null) {
+			toast.success(message.toString())
+		}
+	}
+
+	useEffect(errorHook, [error])
+	useEffect(messageHook, [message])
+
 	const formik = useFormik({
 		initialValues: {
-			name: '',
-			description: '',
-			dockerImg: '',
-			memory: '',
-			url: '',
+			fiuId: '',
+			jsonSchema: '',
+			function: '',
 		},
 		onSubmit: values => {
-			alert(JSON.stringify(values, null, 2))
+			console.log(process.env.REACT_APP_FTN_POST)
+			console.log(values)
+			axios
+				.post(process.env.REACT_APP_FTN_POST, values)
+				.then(res => setMessage(res))
+				.catch(err => setError(err.message))
 		},
 	})
 	return (
 		<form onSubmit={formik.handleSubmit} className="spaced-t">
 			<input
-				id="name"
-				name="name"
+				id="fiuId"
+				name="fiuId"
 				className="input-text"
 				type="text"
-				placeholder="Function Name"
+				placeholder="FIU Id"
 				onChange={formik.handleChange}
-				value={formik.values.name}
+				value={formik.values.fiuId}
 				autoComplete="off"
 				required
 			/>
-			<textarea
-				id="description"
-				name="description"
-				className="input-text input-textarea"
-				placeholder="Function Description"
-				rows="10"
+			<Editor
+				id="jsonSchema"
+				name="jsonSchema"
+				placeholder="Enter your JSON Schema"
 				onChange={formik.handleChange}
-				value={formik.values.description}
-				autoComplete="off"
+				value={formik.values.jsonSchema}
 				required
-			></textarea>
-			<select
-				id="dockerImg"
-				name="dockerImg"
-				className="input-select"
-				onChange={formik.handleChange}
-				value={formik.values.dockerImg}
-				required
-			>
-				<option value="" default>
-					Select Docker Image
-				</option>
-				<option value="ubuntu">Ubuntu 20.04 LTS</option>
-				<option value="alpine">Alpine Linux</option>
-				<option value="fedora">Fedora 23</option>
-			</select>
-			<select
-				id="memory"
-				name="memory"
-				className="input-select"
-				onChange={formik.handleChange}
-				value={formik.values.memory}
-				required
-			>
-				<option value="" default>
-					Select Memory Capacity
-				</option>
-				<option>1024 MB</option>
-				<option>512 MB</option>
-				<option>256 MB</option>
-			</select>
-
+			/>
 			<input
-				id="url"
-				name="url"
+				id="function"
+				name="function"
 				className="input-text"
-				type="url"
-				placeholder="Your GIT Repo URL here"
+				type="text"
+				placeholder="Path to file"
 				onChange={formik.handleChange}
-				value={formik.values.url}
+				value={formik.values.function}
 				autoComplete="off"
 				required
 			/>
