@@ -5,7 +5,7 @@ const getClassName = state => {
 	switch (state) {
 		case 'AVAILABLE':
 			return 'dot available'
-		case 'UNAVAILABLE':
+		case 'PENDING':
 			return 'dot unavailable'
 		case 'FAILED':
 			return 'dot failed'
@@ -14,13 +14,7 @@ const getClassName = state => {
 	}
 }
 
-export default function Function({
-	functionId,
-	jsonSchema,
-	state,
-	created,
-	lastUpdated,
-}) {
+export default function Function({ functionId, jsonSchema, state, created, lastUpdated }) {
 	const handleClick = () => {
 		toast.info(`Adding a job for function ${functionId}`)
 	}
