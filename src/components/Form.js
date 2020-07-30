@@ -3,8 +3,10 @@ import { useFormik } from 'formik'
 import Editor from './Editor'
 import functionService from '../services/functionService'
 import { toast } from 'react-toastify'
+import { useSelector } from 'react-redux'
 
 export default function Form() {
+	const fiuId = useSelector(state => state.id)
 	const formik = useFormik({
 		initialValues: {
 			functionName: '',
@@ -14,7 +16,8 @@ export default function Form() {
 		},
 		onSubmit: values => {
 			let file = document.querySelector('#function').files[0]
-			const blob = new Blob([JSON.stringify(values)], {
+			let newValues = { ...values, fiuId }
+			const blob = new Blob([JSON.stringify(newValues)], {
 				type: 'application/json',
 			})
 			const data = new FormData()

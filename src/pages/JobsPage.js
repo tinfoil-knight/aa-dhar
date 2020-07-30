@@ -45,11 +45,13 @@ export default function JobsPage() {
 
 	const formik = useFormik({
 		initialValues: {
+			aaId: '',
 			functionId: '',
-			jsonSchema: '',
+			requestParams: '',
 		},
 		onSubmit: values => {
-			functionService.createJob(values)
+			let newValues = { ...values, fiuId: fiuId }
+			functionService.createJob(newValues)
 			toast.info('Job submitted, wait for some time')
 		},
 	})
@@ -117,11 +119,21 @@ export default function JobsPage() {
 									</>
 								)}
 							</select>
-							<Editor
-								name="jsonSchema"
-								value={formik.values.jsonSchema}
+							<input
+								type="text"
+								name="aaId"
+								id="aaId"
+								placeholder="AA Id"
+								value={formik.aaId}
 								onChange={formik.handleChange}
-								placeholder="Enter JSON data here"
+								className="input-text"
+								required
+							/>
+							<Editor
+								name="requestParams"
+								value={formik.values.requestParams}
+								onChange={formik.handleChange}
+								placeholder="Enter Request Parameters here"
 							/>
 							<button className="btn">Start Job</button>
 						</form>
