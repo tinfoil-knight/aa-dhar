@@ -61,6 +61,7 @@ export default function JobsPage() {
 				let items = []
 				for (let key in data.functions) {
 					let item = data.functions[key]
+					item['functionId'] = key
 					items.push(item)
 				}
 				setFunctions(items)

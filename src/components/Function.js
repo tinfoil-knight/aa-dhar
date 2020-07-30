@@ -6,7 +6,8 @@ import functionService from '../services/functionService'
 
 const getClassName = state => {
 	switch (state) {
-		case 'AVAILABLE':
+		case 'ACTIVE':
+		case 'INACTIVE':
 			return 'dot available'
 		case 'PENDING':
 			return 'dot unavailable'
@@ -17,8 +18,8 @@ const getClassName = state => {
 	}
 }
 
-const getTime = timestamp => {
-	return moment.unix(timestamp).format('DD-MM-YY, hh:mm:ss a')
+const getTime = time => {
+	return moment(time).format('DD-MM-YY, HH:mm:ss')
 }
 
 export default function Function({

@@ -9,21 +9,26 @@ import CreateNew from '../components/CreateNew'
 import Loader from '../components/Loader'
 
 const Functions = ({ functions }) => {
-	return (
-		<>
-			{functions.map(el => (
-				<Function
-					functionName={el.functionName}
-					functionId={el.functionId}
-					jsonSchema={el.jsonSchema}
-					state={el.state}
-					created={el.created}
-					lastUpdated={el.lastUpdated}
-					key={el.functionId}
-				/>
-			))}
-		</>
-	)
+	const len = functions.length
+	if (len > 0) {
+		return (
+			<>
+				{functions.map(el => (
+					<Function
+						functionName={el.functionName}
+						functionId={el.functionId}
+						jsonSchema={el.jsonSchema}
+						state={el.state}
+						created={el.created}
+						lastUpdated={el.lastUpdated}
+						key={el.functionId}
+					/>
+				))}
+			</>
+		)
+	} else {
+		return <>No functions created yet</>
+	}
 }
 
 export default function FunctionPage() {
@@ -32,11 +37,11 @@ export default function FunctionPage() {
 	const hook = () => {
 		const fetchData = async () => {
 			const data = await functionService.getFunctionsByFiuId(fiuId)
-			console.log(data)
 			if (data !== undefined) {
 				let items = []
 				for (let key in data.functions) {
 					let item = data.functions[key]
+					item['functionId'] = key
 					items.push(item)
 				}
 				setFunctions(items)

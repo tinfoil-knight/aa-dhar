@@ -6,8 +6,8 @@ import TemplatePage from './TemplatePage'
 import functionService from '../services/functionService'
 import Loader from '../components/Loader'
 
-const getTime = timestamp => {
-	return moment.unix(timestamp).format('DD-MM-YY, hh:mm:ss a')
+const getTime = time => {
+	return moment(time).format('DD-MM-YY, HH:mm:ss')
 }
 
 const Stat = ({ title, data }) => {
@@ -23,10 +23,15 @@ const Status = ({ job }) => {
 	return (
 		<div>
 			<h2>Job Details</h2>
-			<Stat title="A/C Aggregator ID: " data={job.aaId} />
+			<Stat title="AA ID: " data={job.aaId} />
 			<Stat title="Function ID: " data={job.functionId} />
 			<Stat title="Created: " data={getTime(job.created)} />
+			<Stat title="Last Updated: " data={getTime(job.lastUpdated)} />
 			<Stat title="Current State: " data={job.state} />
+			<div>
+				<div className="bold">Response</div>
+				<div>{job.result}</div>
+			</div>
 		</div>
 	)
 }

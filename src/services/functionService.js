@@ -71,7 +71,7 @@ const createFunction = async data => {
 const createJob = async data => {
 	try {
 		console.log('createJob')
-		const url = baseUrl + process.env.REACT_APP_FTN_POST
+		const url = baseUrl + process.env.REACT_APP_JOB_POST
 		console.log(url)
 		const res = await axios.post(url, data)
 		console.log(res)
