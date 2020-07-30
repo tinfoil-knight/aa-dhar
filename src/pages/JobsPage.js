@@ -1,63 +1,131 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { useFormik } from 'formik'
+
 import TemplatePage from './TemplatePage'
 import Editor from '../components/Editor'
 import functionService from '../services/functionService'
+import { toast } from 'react-toastify'
 
-const Options = ({ options }) => {
+const Functions = ({ options }) => {
 	return (
 		<>
 			{options.map(el => (
-				<option key={el} value={el}>
-					{el}
+				<option key={el.functionId} value={el.functionId}>
+					{el.functionName + ':' + el.functionId}
 				</option>
 			))}
 		</>
 	)
 }
 
+const Job = ({ job }) => {
+	return (
+		<Link to={`/job/${job}`}>
+			<li>{job}</li>
+		</Link>
+	)
+}
+
+const Jobs = ({ jobs }) => {
+	return (
+		<>
+			{jobs.map(job => (
+				<Job job={job} key={job} />
+			))}
+		</>
+	)
+}
+
 export default function JobsPage() {
-	const [code, setCode] = useState('')
-	const [options, setOptions] = useState(null)
+	const fiuId = useSelector(state => state.id)
+	const [functions, setFunctions] = useState(null)
+	const [jobs, setJobs] = useState(null)
 
-	const handleSubmit = () => {}
-	const handleChange = value => {
-		setCode(value)
-	}
+	const formik = useFormik({
+		initialValues: {
+			functionId: '',
+			jsonSchema: '',
+		},
+		onSubmit: values => {
+			functionService.createJob(values)
+			toast.info('Job submitted, wait for some time')
+		},
+	})
 
-	const hook = () => {
-		let keys = []
-		const data = functionService.getFunctionsByFiuId()
-		for (let key in data.functions) {
-			keys.push(key)
+	const functionsHook = () => {
+		const fetchData = async () => {
+			const data = await functionService.getFunctionsByFiuId(fiuId)
+			if (data !== undefined) {
+				let items = []
+				for (let key in data.functions) {
+					let item = data.functions[key]
+					items.push(item)
+				}
+				setFunctions(items)
+			}
 		}
-		setOptions(keys)
+		fetchData()
 	}
-	useEffect(hook, [])
+
+	const jobsHook = () => {
+		const fetchData = async () => {
+			const data = await functionService.getJobsByFiuId(fiuId)
+
+			if (data !== undefined) {
+				let keys = []
+				for (let key in data.jobs) {
+					keys.push(key)
+				}
+				setJobs(keys)
+			}
+		}
+		fetchData()
+	}
+
+	useEffect(jobsHook, [])
+	useEffect(functionsHook, [])
 
 	return (
 		<TemplatePage>
 			<div className="pkg-box">
-				<h1>Run Jobs</h1>
-				<div className="w-box">
-					<form className="spaced-t">
-						<select className="input-select" required>
-							{options === null ? (
-								<option disabled>Fetching available functions</option>
-							) : (
-								<>
-									<option value="" disabled selected>
-										Select a function
-									</option>
-									<Options options={options} />
-								</>
-							)}
-						</select>
-						<Editor onChange={handleChange} name="test-code" placeholder="Enter code here" />
-						<button className="btn" onClick={handleSubmit}>
-							Start Jobs
-						</button>
-					</form>
-				</div>
+				<section>
+					<h1>Currently Running</h1>
+					<div className="w-box">{jobs ? <Jobs jobs={jobs} /> : 'No jobs running'}</div>
+				</section>
+				<section>
+					<h1>Run New Job</h1>
+					<div className="w-box">
+						<form className="spaced-t" onSubmit={formik.handleSubmit}>
+							<select
+								name="functionId"
+								value={formik.values.functionId}
+								onChange={formik.handleChange}
+								className="input-select"
+								required
+							>
+								{functions === null ? (
+									<option disabled>Fetching available functions</option>
+								) : (
+									<>
+										<option value="" disabled selected>
+											Select a function
+										</option>
+										<Functions options={functions} />
+									</>
+								)}
+							</select>
+							<Editor
+								name="jsonSchema"
+								value={formik.values.jsonSchema}
+								onChange={formik.handleChange}
+								placeholder="Enter JSON data here"
+							/>
+							<button className="btn">Start Job</button>
+						</form>
+					</div>
+				</section>
 			</div>
 		</TemplatePage>
 	)

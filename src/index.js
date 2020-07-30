@@ -8,6 +8,10 @@ import App from './App'
 import globalReducer from './reducer'
 
 const store = createStore(globalReducer)
+store.subscribe(() => {
+	const storeNow = store.getState()
+	console.log(storeNow)
+})
 
 ReactDOM.render(
 	<Provider store={store}>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
 
 * {
 	margin: 0;
@@ -64,7 +64,11 @@ button {
 }
 
 h1 {
-	margin-bottom: 1rem;
+	margin: 0.5rem 0rem;
+}
+
+li {
+	list-style: none;
 }
 
 /* Common Elements */
@@ -238,6 +242,10 @@ h1 {
 
 /* Utility Classes */
 .bold {
+	font-weight: 700;
+}
+
+.s-bold {
 	font-weight: 600;
 }
 
@@ -256,6 +264,18 @@ h1 {
 .center {
 	display: flex;
 	align-items: center;
+	justify-content: center;
+}
+
+.center-tb {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.center-lr {
+	display: flex;
+	flex-direction: column;
 	justify-content: center;
 }
 

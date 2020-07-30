@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
 import functionService from '../services/functionService'
 
@@ -12,6 +13,7 @@ const Functions = ({ functions }) => {
 		<>
 			{functions.map(el => (
 				<Function
+					functionName={el.functionName}
 					functionId={el.functionId}
 					jsonSchema={el.jsonSchema}
 					state={el.state}
@@ -26,14 +28,21 @@ const Functions = ({ functions }) => {
 
 export default function FunctionPage() {
 	const [functions, setFunctions] = useState(null)
+	const fiuId = useSelector(state => state.id)
 	const hook = () => {
-		let items = []
-		const data = functionService.getFunctionsByFiuId()
-		for (let key in data.functions) {
-			let item = data.functions[key]
-			items.push(item)
+		const fetchData = async () => {
+			const data = await functionService.getFunctionsByFiuId(fiuId)
+			console.log(data)
+			if (data !== undefined) {
+				let items = []
+				for (let key in data.functions) {
+					let item = data.functions[key]
+					items.push(item)
+				}
+				setFunctions(items)
+			}
 		}
-		setFunctions(items)
+		fetchData()
 	}
 
 	useEffect(hook, [])

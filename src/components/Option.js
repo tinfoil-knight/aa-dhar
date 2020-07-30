@@ -11,7 +11,7 @@ function getClassName(path, option) {
 export default function Option({ option }) {
 	let location = useLocation()
 	return (
-		<Link to={'/' + option.toLowerCase()}>
+		<Link to={`/${option.toLowerCase()}`}>
 			<button className={getClassName(location.pathname, option)} key={option}>
 				{option}
 			</button>

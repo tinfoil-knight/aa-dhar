@@ -1,5 +1,8 @@
 import React from 'react'
 import { toast } from 'react-toastify'
+import moment from 'moment'
+
+import functionService from '../services/functionService'
 
 const getClassName = state => {
 	switch (state) {
@@ -14,19 +17,33 @@ const getClassName = state => {
 	}
 }
 
-export default function Function({ functionId, jsonSchema, state, created, lastUpdated }) {
+const getTime = timestamp => {
+	return moment.unix(timestamp).format('DD-MM-YY, hh:mm:ss a')
+}
+
+export default function Function({
+	functionId,
+	functionName,
+	jsonSchema,
+	state,
+	created,
+	lastUpdated,
+}) {
 	const handleClick = () => {
+		functionService.createJob()
 		toast.info(`Adding a job for function ${functionId}`)
 	}
+
 	return (
 		<div className="pkg">
-			<div>
-				<span className="bold">{functionId}</span>
+			<div className="spaced-l">
+				<span className="bold">{functionName}</span>
+				<span>{functionId}</span>
 				<span className={getClassName(state)}></span>
 			</div>
 			<div className="thin dim spaced-l">
-				<span>Last Updated: {lastUpdated}</span>
-				<span>Created: {created}</span>
+				<span>Last Updated: {getTime(lastUpdated)}</span>
+				<span>Created: {getTime(created)}</span>
 			</div>
 			<button className="pkg-test" onClick={handleClick}>
 				Run Job
