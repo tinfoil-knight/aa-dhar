@@ -50,8 +50,19 @@ export default function JobsPage() {
 			requestParams: '',
 		},
 		onSubmit: values => {
-			let newValues = { ...values, fiuId: fiuId }
-			functionService.createJob(newValues)
+			var formdata = new FormData()
+			formdata.append('fiuId', fiuId)
+			formdata.append('aaId', values.aaId)
+			formdata.append('functionId', values.functionId)
+			formdata.append('requestParams', values.requestParams)
+
+			// var requestOptions = {
+			// 	method: 'POST',
+			// 	body: formdata,
+			// 	redirect: 'follow',
+			// }
+
+			functionService.createJob(formdata)
 			toast.info('Job submitted, wait for some time')
 		},
 	})
@@ -135,7 +146,9 @@ export default function JobsPage() {
 								onChange={formik.handleChange}
 								placeholder="Enter Request Parameters here"
 							/>
-							<button className="btn">Start Job</button>
+							<button className="btn" type="submit">
+								Start Job
+							</button>
 						</form>
 					</div>
 				</section>

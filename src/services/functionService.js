@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { toast } from 'react-toastify'
-
 const baseUrl = process.env.REACT_APP_BASE_URL
 
 const getFunctionsByFiuId = async fiuId => {
@@ -56,11 +55,11 @@ const getJobDetails = async jobId => {
 }
 
 const createFunction = async data => {
+	console.log('createFunction')
+	const url = baseUrl + process.env.REACT_APP_FTN_POST
+	console.log(url)
 	try {
-		console.log('createFunction')
-		const url = baseUrl + process.env.REACT_APP_FTN_POST
-		console.log(url)
-		const res = await axios.post(baseUrl + process.env.REACT_APP_FTN_POST, data)
+		const res = await axios.post(url, data)
 		console.log(res)
 		toast.success(res.toString())
 	} catch (error) {
@@ -69,13 +68,13 @@ const createFunction = async data => {
 }
 
 const createJob = async data => {
+	console.log('createJob')
+	const url = baseUrl + process.env.REACT_APP_JOB_POST
+	console.log(url)
 	try {
-		console.log('createJob')
-		const url = baseUrl + process.env.REACT_APP_JOB_POST
-		console.log(url)
 		const res = await axios.post(url, data)
 		console.log(res)
-		toast.success(res.toString())
+		toast.success('Job created: ', res.data.jobId)
 	} catch (error) {
 		toast.error(error.message)
 	}
