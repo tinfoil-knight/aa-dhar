@@ -1,5 +1,5 @@
 const initialState = {
-	id: 'c779fe77-a8f5-4958-8a3f-e9465c75be3b',
+	id: '3e5c2e72-fb22-4491-be66-77b68bb87982',
 }
 
 const globalReducer = (state = initialState, action) => {

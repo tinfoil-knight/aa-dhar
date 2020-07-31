@@ -51,16 +51,11 @@ export default function JobsPage() {
 		},
 		onSubmit: values => {
 			var formdata = new FormData()
+
 			formdata.append('fiuId', fiuId)
 			formdata.append('aaId', values.aaId)
 			formdata.append('functionId', values.functionId)
 			formdata.append('requestParams', values.requestParams)
-
-			// var requestOptions = {
-			// 	method: 'POST',
-			// 	body: formdata,
-			// 	redirect: 'follow',
-			// }
 
 			functionService.createJob(formdata)
 			toast.info('Job submitted, wait for some time')

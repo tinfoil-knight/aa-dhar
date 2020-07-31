@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useFormik } from 'formik'
 import Editor from './Editor'
 import functionService from '../services/functionService'
@@ -6,24 +6,28 @@ import { toast } from 'react-toastify'
 import { useSelector } from 'react-redux'
 
 export default function Form() {
+	const [code, setCode] = useState('')
+	const handleCodeChange = newValue => {
+		setCode(newValue)
+	}
 	const fiuId = useSelector(state => state.id)
 	const formik = useFormik({
 		initialValues: {
 			functionName: '',
-			jsonSchema: '',
 			handler: '',
 			runtime: '',
 		},
 		onSubmit: values => {
 			let file = document.querySelector('#function').files[0]
-			let newValues = { ...values, fiuId }
-			const blob = new Blob([JSON.stringify(newValues)], {
-				type: 'application/json',
-			})
-			const data = new FormData()
-			data.append('document', blob)
-			data.append('file', file)
-			functionService.createFunction(data)
+			var formdata = new FormData()
+			formdata.append('function', file, 'binary-input.zip')
+			formdata.append('fiuId', fiuId)
+			formdata.append('handler', values.handler)
+			formdata.append('runtime', values.runtime)
+			formdata.append('functionName', values.functionName)
+			formdata.append('jsonSchema', code)
+			console.log(formdata)
+			functionService.createFunction(formdata)
 			toast.info('Function submitted, wait for some time')
 		},
 	})
@@ -40,6 +44,10 @@ export default function Form() {
 		'python3.6',
 		'python3.7',
 		'python3.8',
+		'dotnetcore1.0',
+		'dotnetcore2.0',
+		'dotnetcore2.1',
+		'dotnetcore3.1',
 		'nodejs4.3-edge',
 		'go1.x',
 		'ruby2.5',
@@ -62,8 +70,8 @@ export default function Form() {
 				id="jsonSchema"
 				name="jsonSchema"
 				placeholder="Enter your JSON Schema here"
-				onChange={formik.handleChange}
-				value={formik.values.jsonSchema}
+				onChange={handleCodeChange}
+				value={code}
 				required
 			/>
 			<input
