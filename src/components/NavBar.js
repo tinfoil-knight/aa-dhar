@@ -4,7 +4,7 @@ import avatar from '../static/avatar.png'
 
 export default function NavBar() {
 	const profile = {
-		name: 'Munish Vinci',
+		name: 'Munshi Vinci',
 		avatar: avatar,
 	}
 	return (

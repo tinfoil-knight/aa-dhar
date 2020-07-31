@@ -19,6 +19,18 @@ const Stat = ({ title, data }) => {
 	)
 }
 
+const getResult = result => {
+	const parsedResult = JSON.parse(result).data
+	const getString = json => {
+		return JSON.stringify(json, undefined, 2)
+	}
+	if (JSON.parse(result).data.errorMessage) {
+		return getString(parsedResult.errorMessage)
+	} else {
+		return JSON.stringify(parsedResult, undefined, 2)
+	}
+}
+
 const Status = ({ job }) => {
 	return (
 		<div>
@@ -30,7 +42,7 @@ const Status = ({ job }) => {
 			<Stat title="Current State: " data={job.state} />
 			<div>
 				<div className="bold">Response</div>
-				<div>{job.result}</div>
+				<div>{getResult(job.result)}</div>
 			</div>
 		</div>
 	)

@@ -65,10 +65,10 @@ export default function FunctionPage() {
 
 	return (
 		<TemplatePage>
-			<div className="pkg-box">
+			<div className="pkg-box spaced-t">
 				<h1>My Functions</h1>
-				{functions ? <Functions functions={functions} /> : <Loader />}
 				<CreateNew />
+				{functions ? <Functions functions={functions} /> : <Loader />}
 			</div>
 		</TemplatePage>
 	)

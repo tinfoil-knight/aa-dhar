@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 
 export default function SideBar() {
 	const optionsTop = ['Functions', 'Jobs']
-	const optionsBottom = ['Support', 'Documentation']
+	const optionsBottom = ['Documentation']
 	const [selected, setSelected] = useState('Packages')
 	return (
 		<div className="sidebar">

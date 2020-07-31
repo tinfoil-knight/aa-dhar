@@ -1,68 +1,68 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Details
+This is the frontend of the `Darth-VDR` project of the `AA-Dhaar` team for the [Sahamati Account Aggregator Hackathon](https://sahamati.org.in/blog/first-account-aggregator-hackathon/).
 
-## Available Scripts
+## Project Submission Details
 
-In the project directory, you can run:
+### Project Name
+Darth VDR
 
-### `yarn start`
+### Tagline
+Darth VDR allows computations on private data through proprietary algorithms in isolated virtual data rooms of a regulated entity without exposing the data or the algorithms to the opposite party.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### The problem it solves
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Previously, whenever two corporate entities had to discuss sensitive financial data, they would use a data room. This would involve printing a lot of documents and people going over details to prevent leakage of proprietary algorithms.
 
-### `yarn test`
+The Account Aggregator framework reduces a lot of paperwork. In the same spirit, we developed a virtual data room solution so all this hassle of poring over lengthy documents would be over without compromising privacy.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+It is hard to run proprietary algorithms in a data room even if the data is digital due to security and trust issues. Plus, only a limited amount of computation can be done on small remote computers which means that the benefit of advancement in ML algorithms can't be used properly.
 
-### `yarn build`
+We tried using homomorphic encryption but it has a very limited use-case so we came up with a different solution.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Technical Details:
+<!-- Describe the solution in 5-6 pts. Note: Both business and tech people will be reading it so make it easy but sufficient -->
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Process:
+- The FIU creates a function containing their proprietary algorithm and converts it to a zip/binary.
+- The binary file is then sent to the VDR (under a regulated entity).
+- The function is validated and stored in a secure data bucket.
+- The VDR can only send out responses in an approved format like booleans or enums.
+- No specific data about balance or history can be sent outside the VDR.
+- The algorithms can operate freely to the best of their capabilities.
+- Once an algorithm is saved, it can be used multiple times on different sets of data.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+### Challenges we ran into
+Syncing up with the schema was hard due to regular changes on both the frontend and the backend.
+Hosting issues due to current unavailability of security certificates.
+Confusions on the specific flow and the best method to solve the problem.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Technologies we used
+Frontend: React + TypeScript
+Cloud Infrastructure: AWS Lambdas, AWS S3, AWS Fargate, AWS EC2 (Domain Filtering)
+Database: PostgreSQL
+Server: Java + Spring Boot
+Lambdas: NodeJS, Python
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Links
+All code repositories are present here: [aa-dhaar](https://github.com/aa-dhaar)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Video Demo
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Pictures
 
-## Learn More
+## Getting Started
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Install `yarn` from here: [Yarn Package Manager](https://yarnpkg.com/)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Navigate to the project in your terminal.
+```bash
+$ yarn
+$ yarn start
+```
 
-### Code Splitting
+To create a build
+```bash
+$ yarn build
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

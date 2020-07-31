@@ -22,8 +22,8 @@ const Functions = ({ options }) => {
 
 const Job = ({ job }) => {
 	return (
-		<Link to={`/job/${job}`}>
-			<li>{job}</li>
+		<Link to={`/job/${job.jobId}`}>
+			<div className="job-list-el">{job.jobId}</div>
 		</Link>
 	)
 }
@@ -31,9 +31,12 @@ const Job = ({ job }) => {
 const Jobs = ({ jobs }) => {
 	return (
 		<>
-			{jobs.map(job => (
-				<Job job={job} key={job} />
-			))}
+			<div>Click on a job to see its details and current status.</div>
+			<div className="scrollable">
+				{jobs.map(job => (
+					<Job job={job} key={job.jobId} />
+				))}
+			</div>
 		</>
 	)
 }
@@ -83,11 +86,11 @@ export default function JobsPage() {
 			const data = await functionService.getJobsByFiuId(fiuId)
 
 			if (data !== undefined) {
-				let keys = []
+				let values = []
 				for (let key in data.jobs) {
-					keys.push(key)
+					values.push(data.jobs[key])
 				}
-				setJobs(keys)
+				setJobs(values)
 			}
 		}
 		fetchData()

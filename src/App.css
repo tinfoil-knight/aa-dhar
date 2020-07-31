@@ -141,6 +141,11 @@ li {
 	color: var(--neutral-w);
 	background: var(--overlay-3);
 }
+
+.link {
+	margin: 0 0.5rem;
+	color: var(--overlay-3);
+}
 /* Page Specific */
 
 /* Package Page */
@@ -239,6 +244,14 @@ li {
 .empty {
 	width: 100%;
 }
+/* Jobs Page */
+.job-list-el {
+	border: solid 1px var(--overlay-3);
+	padding-left: 1rem;
+	border-radius: 1rem;
+	margin-top: 0.5rem;
+	text-align: center;
+}
 
 /* Utility Classes */
 .bold {
@@ -285,6 +298,11 @@ li {
 
 .spaced-t > * + * {
 	margin-top: 1rem;
+}
+
+.scrollable {
+	overflow-y: auto;
+	max-height: 50vh;
 }
 
 /* CSS Loader */
