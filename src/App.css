@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Ubuntu:wght@300&display=swap');
 
 * {
 	margin: 0;
@@ -29,8 +29,8 @@ html {
 }
 
 body {
-	font-family: 'Nunito';
-	font-weight: 400;
+	font-family: 'Nunito', sans-serif;
+	font-weight: 300;
 	font-size: 18px;
 	background: var(--bg);
 }
@@ -59,8 +59,9 @@ button {
 	border: 0;
 	background: none;
 	cursor: pointer;
-	font-family: 'Nunito';
+	font-family: inherit;
 	font-size: inherit;
+	font-weight: inherit;
 }
 
 h1 {
@@ -86,7 +87,7 @@ li {
 
 .w-box {
 	background: var(--neutral-w);
-	padding: 1rem;
+	padding: 2rem;
 }
 
 .nav {
@@ -199,19 +200,19 @@ li {
 	margin-left: 0.5rem;
 }
 
-.unavailable {
+.yellow {
 	background: yellow;
 }
 
-.available {
+.green {
 	background: green;
 }
 
-.failed {
+.red {
 	background: red;
 }
 
-.unknown {
+.grey {
 	color: gray;
 }
 
@@ -245,12 +246,35 @@ li {
 	width: 100%;
 }
 /* Jobs Page */
-.job-list-el {
-	border: solid 1px var(--overlay-3);
-	padding-left: 1rem;
-	border-radius: 1rem;
-	margin-top: 0.5rem;
+
+.table {
+	table-layout: fixed;
+}
+
+.pagination {
+	display: flex;
+	float: right;
+	font-family: 'Ubuntu', sans-serif;
+	font-weight: 300;
+	margin-top: 1rem;
+}
+
+.pagination > * + * {
+	margin-left: 0.5rem;
+}
+
+.table-r {
+	cursor: pointer;
+}
+
+.table-h,
+.table-d {
+	padding: 0.5rem 2rem;
 	text-align: center;
+}
+
+.table-h {
+	font-weight: 600;
 }
 
 /* Utility Classes */
@@ -303,6 +327,10 @@ li {
 .scrollable {
 	overflow-y: auto;
 	max-height: 50vh;
+}
+
+.rounded {
+	border-radius: 1rem;
 }
 
 /* CSS Loader */

@@ -24,7 +24,8 @@ const getResult = result => {
 	const getString = json => {
 		return JSON.stringify(json, undefined, 2)
 	}
-	if (JSON.parse(result).data.errorMessage) {
+
+	if (JSON.parse(result).data && JSON.parse(result).data.errorMessage) {
 		return getString(parsedResult.errorMessage)
 	} else {
 		return JSON.stringify(parsedResult, undefined, 2)
@@ -34,7 +35,7 @@ const getResult = result => {
 const Status = ({ job }) => {
 	return (
 		<div>
-			<h2>Job Details</h2>
+			<h2>Job Result</h2>
 			<Stat title="AA ID: " data={job.aaId} />
 			<Stat title="Function ID: " data={job.functionId} />
 			<Stat title="Created: " data={getTime(job.created)} />

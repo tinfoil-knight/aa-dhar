@@ -8,18 +8,22 @@ const getClassName = state => {
 	switch (state) {
 		case 'ACTIVE':
 		case 'INACTIVE':
-			return 'dot available'
+			return 'dot green'
 		case 'PENDING':
-			return 'dot unavailable'
+			return 'dot yellow'
 		case 'FAILED':
-			return 'dot failed'
+			return 'dot red'
 		default:
-			return 'dot unknown'
+			return 'dot grey'
 	}
 }
 
 const getTime = time => {
 	return moment(time).format('DD-MM-YY, HH:mm:ss')
+}
+
+const shortenId = id => {
+	return '#' + id.substring(id.length - 12)
 }
 
 export default function Function({
@@ -28,7 +32,7 @@ export default function Function({
 	jsonSchema,
 	state,
 	created,
-	lastUpdated,
+	lastUpdated
 }) {
 	const handleClick = () => {
 		functionService.createJob()
@@ -39,7 +43,7 @@ export default function Function({
 		<div className="pkg">
 			<div className="spaced-l">
 				<span className="bold">{functionName}</span>
-				<span>{functionId}</span>
+				<span>{shortenId(functionId)}</span>
 				<span className={getClassName(state)}></span>
 			</div>
 			<div className="thin dim spaced-l">
@@ -47,7 +51,7 @@ export default function Function({
 				<span>Created: {getTime(created)}</span>
 			</div>
 			<button className="pkg-test" onClick={handleClick}>
-				Run Job
+				New Job
 			</button>
 		</div>
 	)
