@@ -25,7 +25,7 @@ export default function Table({ jobs }) {
 		return {
 			Created: getFormattedTime(job.created),
 			Status: getStateDot(job.state),
-			Function: shortenId(job.functionId),
+			Function: job.functionName,
 			AA: job.aaId,
 			ID: shortenId(job.jobId),
 		}

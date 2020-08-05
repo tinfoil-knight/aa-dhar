@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-
 import { useSelector } from 'react-redux'
 
-import TemplatePage from './TemplatePage'
-
-import Table from '../components/Table'
 import functionService from '../services/functionService'
+
+import TemplatePage from './TemplatePage'
+import Table from '../components/Table'
+import Loader from '../components/Loader'
 
 export default function JobsPage() {
 	const fiuId = useSelector(state => state.id)
@@ -33,7 +33,7 @@ export default function JobsPage() {
 		<TemplatePage>
 			<div className="pkg-box">
 				<h1>Jobs List</h1>
-				<div className="w-box rounded center">{jobs ? <Table jobs={jobs} /> : 'No jobs running'}</div>
+				<div className="w-box rounded center">{jobs ? <Table jobs={jobs} /> : <Loader />}</div>
 			</div>
 		</TemplatePage>
 	)

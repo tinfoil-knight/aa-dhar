@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
-
+import { useSelector } from 'react-redux'
 import { useFormik } from 'formik'
 import { toast } from 'react-toastify'
+
+import functionService from '../services/functionService'
 
 import Editor from '../components/Editor'
 
 export default function JobForm() {
 	const [functions, setFunctions] = useState(null)
-
+	const fiuId = useSelector(state => state.id)
 	const functionsHook = () => {
 		const fetchData = async () => {
 			const data = await functionService.getFunctionsByFiuId(fiuId)
@@ -23,6 +25,8 @@ export default function JobForm() {
 		}
 		fetchData()
 	}
+
+	
 
 	useEffect(functionsHook, [])
 
@@ -60,7 +64,7 @@ export default function JobForm() {
 						<option value="" disabled selected>
 							Select a function
 						</option>
-						{options.map(el => (
+						{functions.map(el => (
 							<option key={el.functionId} value={el.functionId}>
 								{el.functionName + ':' + el.functionId}
 							</option>

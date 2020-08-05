@@ -1,6 +1,7 @@
 import React from 'react'
-import { toast } from 'react-toastify'
 import moment from 'moment'
+import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 import functionService from '../services/functionService'
 
@@ -32,13 +33,8 @@ export default function Function({
 	jsonSchema,
 	state,
 	created,
-	lastUpdated
+	lastUpdated,
 }) {
-	const handleClick = () => {
-		functionService.createJob()
-		toast.info(`Adding a job for function ${functionId}`)
-	}
-
 	return (
 		<div className="pkg">
 			<div className="spaced-l">
@@ -50,9 +46,9 @@ export default function Function({
 				<span>Last Updated: {getTime(lastUpdated)}</span>
 				<span>Created: {getTime(created)}</span>
 			</div>
-			<button className="pkg-test" onClick={handleClick}>
-				New Job
-			</button>
+			<Link to="/newjob">
+				<button className="pkg-test">New Job</button>
+			</Link>
 		</div>
 	)
 }

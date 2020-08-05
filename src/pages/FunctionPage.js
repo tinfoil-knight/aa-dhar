@@ -23,7 +23,7 @@ const Functions = ({ functions }) => {
 	const len = functions.length
 	if (len > 0) {
 		return (
-			<>
+			<div className="scrollable">
 				{functions.map(el => (
 					<Function
 						functionName={el.functionName}
@@ -35,7 +35,7 @@ const Functions = ({ functions }) => {
 						key={el.functionId}
 					/>
 				))}
-			</>
+			</div>
 		)
 	} else {
 		return <>No functions created yet</>

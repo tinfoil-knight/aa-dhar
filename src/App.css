@@ -17,6 +17,7 @@
 	--overlay-1: #eceff8;
 	--overlay-2: #dedef2;
 	--overlay-3: #5a76e7;
+	--overlay-4: #7781a6;
 }
 
 html {
@@ -61,11 +62,29 @@ button {
 	cursor: pointer;
 	font-family: inherit;
 	font-size: inherit;
-	font-weight: inherit;
+	font-weight: 400;
 }
 
-h1 {
+h1,
+h2,
+h3 {
 	margin: 0.5rem 0rem;
+}
+
+h2,
+h3 {
+	font-weight: 400;
+}
+
+pre {
+	background: var(--overlay-4);
+	color: var(--neutral-w);
+	width: 80%;
+	padding: 0.5rem 0.5rem;
+}
+
+code {
+	font-family: 'Ubuntu', sans-serif;
 }
 
 li {
@@ -269,7 +288,7 @@ li {
 
 .table-h,
 .table-d {
-	padding: 0.5rem 2rem;
+	padding: 0.5rem 1rem;
 	text-align: center;
 }
 
