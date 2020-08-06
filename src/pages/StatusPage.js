@@ -43,7 +43,7 @@ const Status = ({ job }) => {
 			<Stat title="Current State: " data={job.state} />
 			<div>
 				<div className="bold">Response</div>
-				<div>{getResult(job.result)}</div>
+				<div>{job.result ? getResult(job.result) : 'NULL'}</div>
 			</div>
 		</div>
 	)

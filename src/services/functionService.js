@@ -15,9 +15,9 @@ const getFunctionsByFiuId = async fiuId => {
 	}
 }
 
-const getFunctionDetails = async () => {
+const getFunctionDetails = async functionId => {
 	console.log('getFunctionDetails')
-	const url = baseUrl + process.env.REACT_APP_FTN_DETAILS
+	const url = baseUrl + process.env.REACT_APP_FTN_DETAILS + functionId
 	console.log(url)
 	try {
 		const res = await axios.get(url)

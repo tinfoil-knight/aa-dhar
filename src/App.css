@@ -107,6 +107,7 @@ li {
 .w-box {
 	background: var(--neutral-w);
 	padding: 2rem;
+	border-radius: 1rem;
 }
 
 .nav {
@@ -263,6 +264,37 @@ li {
 
 .empty {
 	width: 100%;
+}
+
+/* Function Details Page */
+.details {
+	display: flex;
+}
+
+.ftndet {
+	flex: 1;
+}
+
+.ftnschema {
+	flex: 3;
+	font-size: 0.75rem;
+}
+
+.col-btn {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	padding: 0.5rem;
+}
+
+.col-con {
+	padding: 0.5rem;
+}
+
+.status {
+	width: 100%;
+	padding: 0.5rem;
+	font-weight: 400;
 }
 /* Jobs Page */
 

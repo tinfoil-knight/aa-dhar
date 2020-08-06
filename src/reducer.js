@@ -1,12 +1,16 @@
+const testId = '3e5c2e72-fb22-4491-be66-77b68bb87982'
+
 const initialState = {
-	id: '3e5c2e72-fb22-4491-be66-77b68bb87982',
+	id: localStorage.getItem('fiuId') || testId,
 }
 
 const globalReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case 'FIU_ID':
+			localStorage.setItem('fiuId', action.id)
 			return { ...state, id: action.id }
 		case 'RESET':
+			localStorage.setItem('fiuId', testId)
 			return { ...initialState }
 		default:
 			return state
