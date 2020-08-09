@@ -90,6 +90,7 @@ const Details = ({ ftn }) => {
 			</div>
 			<div className="w-box">
 				<h3>Recent Jobs</h3>
+				<div className="scrollable">
 				{jobs ? (
 					jobs
 						.filter(job => job.functionId === ftn.functionId)
@@ -97,6 +98,7 @@ const Details = ({ ftn }) => {
 				) : (
 					<Loader />
 				)}
+				</div>
 			</div>
 		</div>
 	)

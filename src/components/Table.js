@@ -41,7 +41,7 @@ export default function Table({ jobs }) {
 	const columns = React.useMemo(() => cols.map(col => colMapper(col)), [])
 
 	const tableInstance = useTable(
-		{ columns, data, initialState: { pageIndex: 0, pageSize: 8 } },
+		{ columns, data, initialState: { pageIndex: 0, pageSize: 6 } },
 		usePagination
 	)
 

@@ -1,23 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 import functionService from '../services/functionService'
 
 import TemplatePage from './TemplatePage'
 import Function from '../components/Function'
 import Loader from '../components/Loader'
-
-const CreateNew = () => {
-	return (
-		<Link to="/newftn">
-			<div className="new-box">
-				<button className="new-btn">+</button>
-				<span className="bold">Create New</span>
-			</div>
-		</Link>
-	)
-}
+import CreateNew from '../components/CreateNew'
 
 const Functions = ({ functions }) => {
 	const len = functions.length
@@ -67,7 +56,7 @@ export default function FunctionPage() {
 		<TemplatePage>
 			<div className="pkg-box spaced-t">
 				<h1>My Functions</h1>
-				<CreateNew />
+				<CreateNew link="/newftn" />
 				{functions ? <Functions functions={functions} /> : <Loader />}
 			</div>
 		</TemplatePage>

@@ -26,7 +26,10 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"deploy": "gh-pages -d build"
+		"deploy": "gh-pages -d build",
+		"zip": "zip -r build.zip build",
+		"clean": "rm -rf build build.zip",
+		"clean:full": "rm -rf build node_modules build.zip"
 	},
 	"eslintConfig": {
 		"extends": "react-app"

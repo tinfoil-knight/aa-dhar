@@ -20,7 +20,7 @@ export default function Form() {
 		onSubmit: values => {
 			let file = document.querySelector('#function').files[0]
 			var formdata = new FormData()
-			formdata.append('function', file, 'binary-input.zip')
+			formdata.append('function', file, file.name)
 			formdata.append('fiuId', fiuId)
 			formdata.append('handler', values.handler)
 			formdata.append('runtime', values.runtime)
